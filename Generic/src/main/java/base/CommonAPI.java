@@ -2,19 +2,33 @@ package base;
 
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.LogStatus;
-import org.openqa.selenium.WebDriver;
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
+import org.testng.annotations.*;
+import java.io.File;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.lang.reflect.Method;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
-
-import static jdk.nashorn.internal.objects.NativeDate.getTime;
 
 public class CommonAPI {
 
@@ -72,9 +86,21 @@ public class CommonAPI {
     }
 
     @AfterMethod
-    public void quitDriver() throws InterruptedException {
-        Thread.sleep(5000);
+    public void quiteDriver(){
+        driver.close();
         driver.quit();
     }
 
+    public String getCurrentPageUrl() {
+        String url = driver.getCurrentUrl();
+        return url;
+    }
+
+    public void typeOnInputField(String locator, String value) throws InterruptedException {
+        try {
+            driver.findElement(By.cssSelector(locator)).sendKeys(value);
+        } catch (Exception ex) {
+            driver.findElement(By.id(locator)).sendKeys(value);
+        }
+    }
 }
