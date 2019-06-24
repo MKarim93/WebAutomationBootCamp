@@ -1,7 +1,7 @@
-package homePageTest;
+package cignaHomePageTest;
 
 import base.CommonAPI;
-import homePage.HomePage;
+import cignaHomePage.CignaHomePage;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
@@ -10,20 +10,20 @@ import org.testng.asserts.SoftAssert;
 
 import java.util.concurrent.TimeUnit;
 
-public class HomePageTest extends CommonAPI {
+public class CignaHomePageTest extends CommonAPI {
 
-    HomePage homePage;
+    CignaHomePage homePage;
 
     String url = "https://www.cigna.com/";
 
     @BeforeClass
-    public void intil(){
-        homePage = PageFactory.initElements(driver, HomePage.class);
+    public void intil() {
+        homePage = PageFactory.initElements(driver, CignaHomePage.class);
         driver.get(url);
     }
 
     @Test
-    public void individualsFamilies(){
+    public void individualsFamilies() {
         homePage.setIndividualsFamiles();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         String acutalURL = driver.getCurrentUrl();
@@ -34,7 +34,7 @@ public class HomePageTest extends CommonAPI {
     }
 
     @Test
-    public void employersBrokers(){
+    public void employersBrokers() {
         homePage.setEmployersBrokers();
         String acutalURL = getCurrentPageUrl();
         String expectedURL = "https://www.cigna.com/employers-brokers/";
@@ -43,7 +43,7 @@ public class HomePageTest extends CommonAPI {
     }
 
     @Test
-    public void healthCareProviders(){
+    public void healthCareProviders() {
         homePage.setHealthCareProviders();
         String acutalURL = getCurrentPageUrl();
         String expectedURL = "https://www.cigna.com/health-care-providers/";
@@ -52,7 +52,7 @@ public class HomePageTest extends CommonAPI {
     }
 
     @Test
-    public void aboutUs(){
+    public void aboutUs() {
         homePage.setAboutUs();
         String acutalURL = getCurrentPageUrl();
         String expectedURL = "https://www.cigna.com/about-us/";
@@ -61,7 +61,7 @@ public class HomePageTest extends CommonAPI {
     }
 
     @Test
-    public void searchBar(){
+    public void searchBar() {
         homePage.setSearchBar("Doctors");
         homePage.setSubmitButton();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);

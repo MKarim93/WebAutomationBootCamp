@@ -10,10 +10,10 @@
     <parameter name="envName" value="Browserstack"/>
     <parameter name="browserName" value="chrome"/>
 
-    <test name="Amazon Test">
+    <test name="Cigna HomePage Test">
         <parameter name="url" value="https://www.cigna.com/"/>
         <classes>
-            <class name="homePageTest.HomePageTest"/>
+            <class name="cignaHomePageTest.CignaHomePageTest"/>
         </classes>
     </test>
 </suite>

@@ -15,6 +15,7 @@ import org.testng.ITestContext;
 import org.testng.ITestResult;
 import org.testng.annotations.*;
 import org.testng.annotations.*;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -86,7 +87,7 @@ public class CommonAPI {
     }
 
     @AfterMethod
-    public void quiteDriver(){
+    public void quiteDriver() {
         driver.close();
         driver.quit();
     }

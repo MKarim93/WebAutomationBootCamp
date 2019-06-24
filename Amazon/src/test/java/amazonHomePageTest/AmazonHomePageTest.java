@@ -1,8 +1,7 @@
-package homePageTest;
+package amazonHomePageTest;
 
 import base.CommonAPI;
-import homePage.HomePage;
-import org.openqa.selenium.By;
+import amazonHomePage.AmazonHomePage;
 import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
@@ -11,19 +10,19 @@ import org.testng.asserts.SoftAssert;
 
 import java.util.concurrent.TimeUnit;
 
-public class HomePageTest extends CommonAPI {
+public class AmazonHomePageTest extends CommonAPI {
 
-    HomePage homePage;
+    AmazonHomePage homePage;
     String url = "https://www.amazon.com/";
 
     @BeforeClass
-    public void intil(){
-        homePage = PageFactory.initElements(driver, HomePage.class);
+    public void intil() {
+        homePage = PageFactory.initElements(driver, AmazonHomePage.class);
         driver.get(url);
     }
 
     @Test
-    public void searchBar(){
+    public void searchBar() {
         homePage.setSearchBar("laptop");
         homePage.setSearchButton();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
@@ -32,62 +31,58 @@ public class HomePageTest extends CommonAPI {
     }
 
     @Test
-    public void todaysDeals(){
+    public void todaysDeals() {
         homePage.setTodaysDeals();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         String title = driver.getTitle();
-        if(title.contains("Today's Deals"))
-        {
+        if (title.contains("Today's Deals")) {
             System.out.println("Test Passed");
-        }else {
+        } else {
             System.out.println("Test Failed");
         }
     }
 
     @Test
-    public void amazonBasics(){
+    public void amazonBasics() {
         homePage.setAmazonBasics();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         //driver.getTitle().contains("AmazonBasics");
-        if(driver.getTitle().contains("AmazonBasics"))
-        {
+        if (driver.getTitle().contains("AmazonBasics")) {
             System.out.println("Test did not fail! Whoo Hoo");
-        }else {
+        } else {
             System.out.println("Test did not pass! Boo");
         }
     }
 
     @Test
-    public void coupons(){
+    public void coupons() {
         homePage.setCoupons();
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
-        if(driver.getTitle().contains("Coupons"))
-        {
+        if (driver.getTitle().contains("Coupons")) {
             System.out.println("Correct Webpage");
-        }else{
+        } else {
             System.out.println("Incorrect Webpage");
         }
     }
 
     @Test
-    public void wholeFoods(){
+    public void wholeFoods() {
         homePage.setWholeFoods();
-        if(driver.getTitle().equalsIgnoreCase("whole foods"))
-        {
+        if (driver.getTitle().equalsIgnoreCase("whole foods")) {
             System.out.println("Right Webpage");
         }
     }
+
     @Test
-    public void bestSellers(){
+    public void bestSellers() {
         homePage.setBestSellers();
-        if(driver.getTitle().contains("Best Sellers"))
-        {
+        if (driver.getTitle().contains("Best Sellers")) {
             System.out.println("Test Passed");
         }
     }
 
     @Test
-    public void giftIdeas(){
+    public void giftIdeas() {
         homePage.setGiftIdeas();
         driver.getTitle().contains("Gift Ideas");
         SoftAssert softAssert = new SoftAssert();
@@ -95,10 +90,9 @@ public class HomePageTest extends CommonAPI {
     }
 
     @Test
-    public void newReleases(){
+    public void newReleases() {
         homePage.setNewReleases();
-        if(driver.getTitle().contains("New Releases"))
-        {
+        if (driver.getTitle().contains("New Releases")) {
             System.out.println("Passed");
         }
     }
